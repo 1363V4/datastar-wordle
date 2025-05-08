@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D*ORDLE</title>
+    <link rel="icon" type="image/png" href="/static/img/dordle.png">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <script src="/static/js/main.js"></script>
+    <script type="module" src="/static/js/datastar.js"></script>
+</head>
+<body>
+    <header class="gc">
+        <p class="gt xl">D*ORDLE</p>
+    </header>
+    <main id="main" class="gc" data-on-load="@get('/main')" data-indicator-fetching>
+        <img src="/static/img/bars-fade.svg" class="gc" data-show="$fetching">
+    </main>
+    <!-- <div data-json-signals></div> -->
+</body>
+</html>

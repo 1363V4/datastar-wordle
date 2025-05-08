@@ -1,0 +1,110 @@
+@import url('gold.css');
+@import url('https://fonts.googleapis.com/css2?family=National+Park&family=Sigmar+One&display=swap');
+
+:root {
+    --primary: #137481;
+    --secondary: #d8a841;
+    --text: #012345;
+    --bg-primary: #a1a7b1;
+    --bg-secondary: #567dad;
+    --bg-2: hsl(from var(--bg-secondary) h s 60);
+    --bg-3: hsl(from var(--bg-secondary) h s 70);
+}
+
+html {
+    font-size: 2rem;
+    font-family: "National Park", sans-serif;
+    font-optical-sizing: auto;
+    color: var(--text);
+}
+
+body {
+    min-width: 100vw;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: 4rem 1fr;
+    gap: .8rem;
+    overflow-y: hidden;
+    background: var(--bg-secondary);
+}
+
+header {
+    font-family: "Sigmar One", sans-serif;
+    color: transparent;
+    background: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary));
+    background-size: 200% 200%;
+    animation: animateBackground 10s ease infinite;
+    background-clip: text;
+    mix-blend-mode: multiply;
+    align-content: end;
+}
+
+@keyframes animateBackground {
+    50% { background-position: 100% 100%; }
+}
+
+#main {
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+    gap: .8rem;
+    height: fit-content;
+}
+
+.line {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1rem;
+}
+
+.square {
+    aspect-ratio: 1/1;
+    width: 3ch;
+    font-weight: bold;
+    display: grid;
+    place-content: center;
+    background: var(--bg-2);
+    padding: .1rem;
+    border: 2px var(--bg-3) solid;
+    border-radius: .2rem;
+    &[current] {
+        border-color: var(--secondary);
+    }
+    &.green {
+        background: green;
+    }
+    &.yellow {
+        background: yellow;
+    }
+    &.grey {
+        background: grey;
+    }
+}
+
+.square:nth-child(1) {
+    transition: background 0.2s linear;
+}
+.square:nth-child(2) {
+    transition: background 0.2s linear 0.4s;
+}
+.square:nth-child(3) {
+    transition: background 0.2s linear 0.8s;
+}
+.square:nth-child(4) {
+    transition: background 0.2s linear 1.2s;
+}
+.square:nth-child(5) {
+    transition: background 0.2s linear 1.6s;
+}
+.square:nth-child(6) {
+    transition: background 0.2s linear 2.0s;
+}
+
+@keyframes rotate {
+    0% { transform: rotateX(0deg); }
+    100% { transform: rotateX(360deg); }
+}
+
+img {
+    aspect-ratio: 1/1;
+    width: 1rem;
+}
