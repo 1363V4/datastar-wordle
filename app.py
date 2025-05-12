@@ -55,24 +55,24 @@ async def main_view(lines, current):
         if n == current:
             html += f'''
             <div class="line">
-                <div id="sq{n}0" class="square" data-attr-current="$current == 0" data-text="$squares[0]"></div>
-                <div id="sq{n}1" class="square" data-attr-current="$current == 1" data-text="$squares[1]"></div>
-                <div id="sq{n}2" class="square" data-attr-current="$current == 2" data-text="$squares[2]"></div>
-                <div id="sq{n}3" class="square" data-attr-current="$current == 3" data-text="$squares[3]"></div>
-                <div id="sq{n}4" class="square" data-attr-current="$current == 4" data-text="$squares[4]"></div>
-                <div id="sq{n}5" class="square" data-attr-current="$current == 5" data-text="$squares[5]"></div>
+                <div class="square" data-attr-current="$current == 0" data-text="$squares[0]"></div>
+                <div class="square" data-attr-current="$current == 1" data-text="$squares[1]"></div>
+                <div class="square" data-attr-current="$current == 2" data-text="$squares[2]"></div>
+                <div class="square" data-attr-current="$current == 3" data-text="$squares[3]"></div>
+                <div class="square" data-attr-current="$current == 4" data-text="$squares[4]"></div>
+                <div class="square" data-attr-current="$current == 5" data-text="$squares[5]"></div>
             </div>
             '''
         else:
             line = lines.get(str(n), [["", ""], ["", ""], ["", ""], ["", ""], ["", ""], ["", ""]])
             html += f'''
             <div class="line">
-                <div id="sq{n}0" style="animation: rotate .2s linear forwards" class="square {line[0][1]}">{line[0][0]}</div>
-                <div id="sq{n}1" style="animation: rotate .2s linear forwards .4s" class="square {line[1][1]}">{line[1][0]}</div>
-                <div id="sq{n}2" style="animation: rotate .2s linear forwards .8s" class="square {line[2][1]}">{line[2][0]}</div>
-                <div id="sq{n}3" style="animation: rotate .2s linear forwards 1.2s" class="square {line[3][1]}">{line[3][0]}</div>
-                <div id="sq{n}4" style="animation: rotate .2s linear forwards 1.6s" class="square {line[4][1]}">{line[4][0]}</div>
-                <div id="sq{n}5" style="animation: rotate .2s linear forwards 2s" class="square {line[5][1]}">{line[5][0]}</div>
+                <div style="animation: rotate .2s linear forwards" class="square {line[0][1]}">{line[0][0]}</div>
+                <div style="animation: rotate .2s linear forwards .4s" class="square {line[1][1]}">{line[1][0]}</div>
+                <div style="animation: rotate .2s linear forwards .8s" class="square {line[2][1]}">{line[2][0]}</div>
+                <div style="animation: rotate .2s linear forwards 1.2s" class="square {line[3][1]}">{line[3][0]}</div>
+                <div style="animation: rotate .2s linear forwards 1.6s" class="square {line[4][1]}">{line[4][0]}</div>
+                <div style="animation: rotate .2s linear forwards 2s" class="square {line[5][1]}">{line[5][0]}</div>
             </div>
             '''
     html += '''
@@ -126,6 +126,7 @@ async def main():
                             yield SSE.merge_fragments(fragments=[html])
                         case "NOPE":
                             pass
+                await asyncio.sleep(0.01)
             except asyncio.CancelledError:
                 await pubsub.unsubscribe(str(db_id))
                 break
