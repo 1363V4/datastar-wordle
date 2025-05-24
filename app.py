@@ -1,6 +1,9 @@
+import os
+import mimetypes
 from quart import Quart, session, render_template, request
 from datastar_py.sse import ServerSentEventGenerator as SSE
 from datastar_py.quart import make_datastar_response
+from dotenv import load_dotenv
 
 from tinydb import TinyDB
 import redis.asyncio as redis
@@ -13,8 +16,13 @@ from words import words
 
 # CONFIG
 
+load_dotenv()
+
 app = Quart(__name__)
-app.secret_key = 'a_secret_key'
+app.secret_key = os.getenv('QUART_SECRET_KEY')
+
+# Configure MIME types for JavaScript
+mimetypes.add_type('application/javascript', '.js')
 
 db = TinyDB("data.json", sort_keys=True, indent=2)
 games = db.table('games')
